@@ -2,7 +2,7 @@ import socket
 
 #ruta del archivo que tiene los mensajes codificados
 RUTA_ARCHIVO = "mensaje.txt"
-
+#el diccionario que ocupara para decodificar
 diccionario = {
     'sigma': 'A', 'skibidi': 'B', 'gigachad': 'C', 'mewing': 'D', 'rizz': 'E',
     'gyatt': 'F', 'elfa': 'G', 'pomni': 'H', 'potaxie': 'I', 'gogogo': 'J',
