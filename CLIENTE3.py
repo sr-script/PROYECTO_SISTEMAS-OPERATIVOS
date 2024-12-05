@@ -1,6 +1,6 @@
 import socket
 
-# Ruta del archivo que contiene los mensajes codificados
+#ruta del archivo que tiene los mensajes codificados
 RUTA_ARCHIVO = "mensaje.txt"
 
 diccionario = {
@@ -21,9 +21,9 @@ diccionario = {
     'tiktok': '"'
 }
 
-# Función para decodificar el mensaje codificado
+#funcion para decodificar el mensaje codificado
 def decodificar_texto(mensaje_codificado):
-    palabras = mensaje_codificado.strip().split()  # Dividir en palabras
+    palabras = mensaje_codificado.strip().split()  #divide el contenido del archivo en palabras
     mensaje_decodificado = ''.join(diccionario.get(palabra, palabra) for palabra in palabras)
     return mensaje_decodificado
 
