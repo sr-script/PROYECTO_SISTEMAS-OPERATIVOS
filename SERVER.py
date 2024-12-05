@@ -3,7 +3,7 @@ import threading
 
 RUTA_ARCHIVO = "mensaje.txt"
 
-# Lock para sincronizar el acceso al archivo
+#se hace mutex para sincronizar el acceso al archivo
 lock = threading.Lock()
 
 def manejar_cliente(conexion, direccion):
