@@ -1,6 +1,6 @@
 import socket
-
-diccionario = {
+#el diccionario que ocupara para codificar
+diccionario = { 
     'A': 'sigma', 'B': 'skibidi', 'C': 'gigachad', 'D': 'mewing', 'E': 'rizz', 'F': 'gyatt',
     'G': 'elfa', 'H': 'pomni', 'I': 'potaxie', 'J': 'gogogo', 'K': 'momazo', 'L': 'simp',
     'M': 'cringe', 'N': 'aimep3', 'Ñ': 'lol', 'O': 'basado', 'P': 'papu', 'Q': 'ternure68',
@@ -14,7 +14,7 @@ diccionario = {
     '-': 'elpantera', '_': 'sigmalleros', '(': 'chaqueta', ')': 'insana', '"': 'tiktok'
 }
 
-RUTA_ARCHIVO = "mensaje.txt"
+RUTA_ARCHIVO = "mensaje.txt" #ruta del archivo a usar
 
 def codificar_mensaje(mensaje): #codifica el mensaje usando el diccionario
     return ' '.join(diccionario.get(caracter.upper(), caracter) for caracter in mensaje)
