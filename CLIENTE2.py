@@ -1,6 +1,5 @@
 import socket
 
-#diccionario de codificacion
 diccionario = {
     'A': 'sigma', 'B': 'skibidi', 'C': 'gigachad', 'D': 'mewing', 'E': 'rizz', 'F': 'gyatt',
     'G': 'elfa', 'H': 'pomni', 'I': 'potaxie', 'J': 'gogogo', 'K': 'momazo', 'L': 'simp',
@@ -15,35 +14,37 @@ diccionario = {
     '-': 'elpantera', '_': 'sigmalleros', '(': 'chaqueta', ')': 'insana', '"': 'tiktok'
 }
 
-#es en donde se guardara el mensaje codificado 
 RUTA_ARCHIVO = "mensaje.txt"
 
-def codificar_mensaje(mensaje): #codifica el mensaje
+def codificar_mensaje(mensaje):
+    """Codifica un mensaje usando el diccionario."""
     return ' '.join(diccionario.get(caracter.upper(), caracter) for caracter in mensaje)
 
-
-def guardar_en_archivo(mensaje_codificado): #se guarda el mensaje codificado en el archivo
+def guardar_en_archivo(mensaje_codificado):
+    """Guarda el mensaje codificado en el archivo."""
     with open(RUTA_ARCHIVO, 'w') as archivo:
         archivo.write(mensaje_codificado)
-    print(f"se guardo  en {RUTA_ARCHIVO}")
+    print(f"Se guardó en {RUTA_ARCHIVO}: {mensaje_codificado}")
 
-#se define la ip y puerto del servidor
-HOST = '127.0.0.1' 
-PORT = 8080        
+HOST = '127.0.0.1'
+PORT = 8080
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente: #se crea el socket
-    cliente.connect((HOST, PORT)) #se conecta el socket
-    print("conexion creada")
-    cliente.sendall("CLIENTE_2".encode('utf-8'))  #id del cliente
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente:
+    cliente.connect((HOST, PORT))
+    print("Conexión creada")
+    cliente.sendall("CLIENTE_2".encode('utf-8'))  
+
+    mensaje = cliente.recv(1024).decode('utf-8').strip()
+    if not mensaje:
+        print("Error: No se recibió mensaje del servidor.")
+    else:
+        print(f"Mensaje recibido del servidor: {mensaje}")
 
 
-    mensaje = cliente.recv(1024).decode('utf-8')
-    print(f"el mensaje recibido del servidor fue {mensaje}") #se obtiene el mensaje
+        mensaje_codificado = codificar_mensaje(mensaje)
+        print(f"Mensaje codificado: {mensaje_codificado}")
 
-    mensaje_codificado = codificar_mensaje(mensaje) #se codifica el mensaje
-    print(f"el mensaje ha sido codificado a {mensaje_codificado}")
+        guardar_en_archivo(mensaje_codificado)
 
-    guardar_en_archivo(mensaje_codificado) #se guarda el mensaje codificado
- 
-    cliente.sendall(mensaje_codificado.encode('utf-8')) #se envia el mensaje codificado al servidor
-    print("mensaje enviado al servidor")
+        cliente.sendall(mensaje_codificado.encode('utf-8'))
+        print("Mensaje codificado enviado al servidor")
