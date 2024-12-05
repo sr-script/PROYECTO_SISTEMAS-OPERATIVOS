@@ -16,39 +16,36 @@ diccionario = {
 
 RUTA_ARCHIVO = "mensaje.txt"
 
-def codificar_mensaje(mensaje):
-    """Codifica un mensaje usando el diccionario."""
+def codificar_mensaje(mensaje): #codifica el mensaje usando el diccionario
     return ' '.join(diccionario.get(caracter.upper(), caracter) for caracter in mensaje)
 
-def guardar_en_archivo(mensaje_codificado):
-    """Guarda el mensaje codificado en el archivo."""
+def guardar_en_archivo(mensaje_codificado): #guarda el mensaje codificado en el archivo
     with open(RUTA_ARCHIVO, 'w') as archivo:
         archivo.write(mensaje_codificado)
-    print(f"Se guardó en {RUTA_ARCHIVO}: {mensaje_codificado}")
+    print(f"se ha guardado en {RUTA_ARCHIVO}: {mensaje_codificado}")
 
-HOST = '127.0.0.1'
+HOST = '127.0.0.1' #se define el host y el puerto
 PORT = 8080
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente:
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente: #se crea el socket y se conecta
     cliente.connect((HOST, PORT))
-    print("Conexión creada")
-    cliente.sendall("CLIENTE_2".encode('utf-8'))  
+    print("se ha conectado")
+    cliente.sendall("CLIENTE_2".encode('utf-8'))   #se identifica a si mismo
 
-    try:
+    try: #manejo de excepciones
         with open(RUTA_ARCHIVO, 'r') as archivo:
             mensaje = archivo.read().strip()
             if not mensaje:
-                print("El archivo está vacío.")
+                print("el archivo esta vacio") #si no hay nada en el archivo dira que esta vacio
             else:
-                print(f"Mensaje leído desde el archivo: {mensaje}")
+                print(f"el mensaje en el archivo es {mensaje}") #si si hay algo, lo leera
 
                 mensaje_codificado = codificar_mensaje(mensaje)
-                print(f"Mensaje codificado: {mensaje_codificado}")
+                print(f"el mensaje codificado es {mensaje_codificado}") #y lo codificara
 
-                guardar_en_archivo(mensaje_codificado)
+                guardar_en_archivo(mensaje_codificado) #y se  guarda en el archivo
 
-                # Enviar el mensaje codificado al servidor
-                cliente.sendall(mensaje_codificado.encode('utf-8'))
-                print("Mensaje codificado enviado al servidor")
+                cliente.sendall(mensaje_codificado.encode('utf-8')) #se envia el mensaje codificado al servidor
+                print("mensaje codificado enviado al servidor")
     except FileNotFoundError:
-        print(f"Error: El archivo {RUTA_ARCHIVO} no fue encontrado.")
+        print(f"el archivo {RUTA_ARCHIVO} no existe") #si el archivo no existe dara error
