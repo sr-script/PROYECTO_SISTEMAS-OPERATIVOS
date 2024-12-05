@@ -1,7 +1,7 @@
 import socket
 
 # Ruta del archivo que contiene los mensajes codificados
-RUTA_ARCHIVO = "mensajes.txt"
+RUTA_ARCHIVO = "mensaje.txt"
 
 diccionario = {
     'sigma': 'A', 'skibidi': 'B', 'gigachad': 'C', 'mewing': 'D', 'rizz': 'E',
@@ -39,3 +39,8 @@ def main():
     # Decodificar el mensaje
     mensaje_decodificado = decodificar_texto(mensaje_codificado)
     print(f"Mensaje decodificado: {mensaje_decodificado}")
+    
+    
+if __name__ == "__main__":
+    main()
+
