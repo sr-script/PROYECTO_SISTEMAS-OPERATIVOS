@@ -44,8 +44,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente: #se crea el s
                 print(f"el mensaje codificado es {mensaje_codificado}") #y lo codificara
 
                 guardar_en_archivo(mensaje_codificado) #y se  guarda en el archivo
-
-                cliente.sendall(mensaje_codificado.encode('utf-8')) #se envia el mensaje codificado al servidor
-                print("mensaje codificado enviado al servidor")
+                
     except FileNotFoundError:
         print(f"el archivo {RUTA_ARCHIVO} no existe") #si el archivo no existe dara error
