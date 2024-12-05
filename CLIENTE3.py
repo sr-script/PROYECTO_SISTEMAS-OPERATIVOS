@@ -27,20 +27,13 @@ def decodificar_texto(mensaje_codificado):
     mensaje_decodificado = ''.join(diccionario.get(palabra, palabra) for palabra in palabras)
     return mensaje_decodificado
 
-# Función principal
-def main():
-    # Leer mensaje codificado desde el archivo
-    with open(RUTA_ARCHIVO, 'r') as archivo:
-        mensaje_codificado = archivo.read().strip()
+
+with open(RUTA_ARCHIVO, 'r') as archivo:
+     mensaje_codificado = archivo.read().strip() #lee el mensaje codificado en el archivo
     
-    print("Conexión creada\n")
-    print(f"Mensaje codificado: {mensaje_codificado}")
+print("Conexión creada\n")
+print(f"Mensaje codificado: {mensaje_codificado}")
     
-    # Decodificar el mensaje
-    mensaje_decodificado = decodificar_texto(mensaje_codificado)
-    print(f"Mensaje decodificado: {mensaje_decodificado}")
-    
-    
-if __name__ == "__main__":
-    main()
+mensaje_decodificado = decodificar_texto(mensaje_codificado) #decodifica el mensaje
+print(f"el mensaje decodificado es {mensaje_decodificado}")
 
