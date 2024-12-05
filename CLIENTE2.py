@@ -34,17 +34,21 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente:
     print("Conexión creada")
     cliente.sendall("CLIENTE_2".encode('utf-8'))  
 
-    mensaje = cliente.recv(1024).decode('utf-8').strip()
-    if not mensaje:
-        print("Error: No se recibió mensaje del servidor.")
-    else:
-        print(f"Mensaje recibido del servidor: {mensaje}")
+    try:
+        with open(RUTA_ARCHIVO, 'r') as archivo:
+            mensaje = archivo.read().strip()
+            if not mensaje:
+                print("El archivo está vacío.")
+            else:
+                print(f"Mensaje leído desde el archivo: {mensaje}")
 
+                mensaje_codificado = codificar_mensaje(mensaje)
+                print(f"Mensaje codificado: {mensaje_codificado}")
 
-        mensaje_codificado = codificar_mensaje(mensaje)
-        print(f"Mensaje codificado: {mensaje_codificado}")
+                guardar_en_archivo(mensaje_codificado)
 
-        guardar_en_archivo(mensaje_codificado)
-
-        cliente.sendall(mensaje_codificado.encode('utf-8'))
-        print("Mensaje codificado enviado al servidor")
+                # Enviar el mensaje codificado al servidor
+                cliente.sendall(mensaje_codificado.encode('utf-8'))
+                print("Mensaje codificado enviado al servidor")
+    except FileNotFoundError:
+        print(f"Error: El archivo {RUTA_ARCHIVO} no fue encontrado.")
