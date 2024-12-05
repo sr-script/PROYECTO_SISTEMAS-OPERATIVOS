@@ -31,8 +31,8 @@ def decodificar_texto(mensaje_codificado):
 with open(RUTA_ARCHIVO, 'r') as archivo:
      mensaje_codificado = archivo.read().strip() #lee el mensaje codificado en el archivo
     
-print("Conexión creada\n")
-print(f"Mensaje codificado: {mensaje_codificado}")
+print("se creo la conexion\n")
+print(f"el mensaje codificado es {mensaje_codificado}")
     
 mensaje_decodificado = decodificar_texto(mensaje_codificado) #decodifica el mensaje
 print(f"el mensaje decodificado es {mensaje_decodificado}")
